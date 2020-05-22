@@ -21,10 +21,10 @@ const DUMMY_PLACES = [
     title: 'Beograd',
     description: 'GRAD BEO',
     imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/8/87/Beograd_night.png',
-    address: 'Kneza Milosa 2',
+    address: 'Bore Prodanovica 9a',
     location: {
-      lat: 44.8149028,
-      lng: 20.1424149
+      lat: 44.8076221,
+      lng: 20.4929999
     },
     creator: 'p2'
   }
