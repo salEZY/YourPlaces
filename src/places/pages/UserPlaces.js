@@ -1,39 +1,41 @@
-import React from 'react'
-import { useParams } from 'react-router-dom'
+import React from "react";
+import { useParams } from "react-router-dom";
 
-import PlaceList from '../components/PlaceList'
+import PlaceList from "../components/PlaceList";
 
 const DUMMY_PLACES = [
   {
-    id: 'p1',
-    title: 'Beograd',
-    description: 'NAJJACI GRAD',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/8/87/Beograd_night.png',
-    address: 'Kneza Milosa 2',
+    id: "u1",
+    title: "Beograd",
+    description: "NAJJACI GRAD",
+    imageUrl:
+      "https://upload.wikimedia.org/wikipedia/commons/8/87/Beograd_night.png",
+    address: "Kneza Milosa 20",
     location: {
-      lat: 44.8149028,
-      lng: 20.1424149
+      lat: 44.8074093,
+      lng: 20.4591701,
     },
-    creator: 'p1'
+    creator: "u1",
   },
   {
-    id: 'p2',
-    title: 'Beograd',
-    description: 'GRAD BEO',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/8/87/Beograd_night.png',
-    address: 'Bore Prodanovica 9a',
+    id: "u2",
+    title: "Beograd",
+    description: "GRAD BEO",
+    imageUrl:
+      "https://upload.wikimedia.org/wikipedia/commons/8/87/Beograd_night.png",
+    address: "Bore Prodanovica 9a",
     location: {
-      lat: 44.8076221,
-      lng: 20.4929999
+      lat: 44.807148,
+      lng: 20.495167,
     },
-    creator: 'p2'
-  }
-]
+    creator: "u2",
+  },
+];
 
 const UserPlaces = () => {
-  const userId = useParams().userId
-  const loadedPlaces = DUMMY_PLACES.filter(place => place.creator === userId)
-  return <PlaceList items={loadedPlaces}/>
-}
+  const userId = useParams().userId;
+  const loadedPlaces = DUMMY_PLACES.filter((place) => place.creator === userId);
+  return <PlaceList items={loadedPlaces} />;
+};
 
-export default UserPlaces
+export default UserPlaces;
