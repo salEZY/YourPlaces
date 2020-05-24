@@ -10,10 +10,10 @@ const DUMMY_PLACES = [
     description: "NAJJACI GRAD",
     imageUrl:
       "https://upload.wikimedia.org/wikipedia/commons/8/87/Beograd_night.png",
-    address: "Kneza Milosa 20",
+    address: "Djevdjelijska 15",
     location: {
-      lat: 44.8074093,
-      lng: 20.4591701,
+      lat: 44.8005828,
+      lng: 20.4868401,
     },
     creator: "u1",
   },
