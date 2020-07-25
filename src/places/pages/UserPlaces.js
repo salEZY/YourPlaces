@@ -1,41 +1,41 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import PlaceList from "../components/PlaceList";
-
-const DUMMY_PLACES = [
-  {
-    id: "u1",
-    title: "Beograd",
-    description: "NAJJACI GRAD",
-    imageUrl:
-      "https://upload.wikimedia.org/wikipedia/commons/8/87/Beograd_night.png",
-    address: "Djevdjelijska 15",
-    location: {
-      lat: 44.8005828,
-      lng: 20.4868401,
-    },
-    creator: "u1",
-  },
-  {
-    id: "u2",
-    title: "Beograd",
-    description: "GRAD BEO",
-    imageUrl:
-      "https://upload.wikimedia.org/wikipedia/commons/8/87/Beograd_night.png",
-    address: "Bore Prodanovica 9a",
-    location: {
-      lat: 44.807148,
-      lng: 20.495167,
-    },
-    creator: "u2",
-  },
-];
+import ErrorModal from "../../shared/components/UIElements/ErrorModal";
+import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
+import { useHttpClient } from "../../shared/hooks/http-hook";
 
 const UserPlaces = () => {
+  const [loadedPlaces, setLoadedPlaces] = useState();
+  const { isLoading, error, sendRequest, clearError } = useHttpClient();
+
   const userId = useParams().userId;
-  const loadedPlaces = DUMMY_PLACES.filter((place) => place.creator === userId);
-  return <PlaceList items={loadedPlaces} />;
+
+  useEffect(() => {
+    const fetchPlaces = async () => {
+      try {
+        const responseData = await sendRequest(
+          `http://localhost:5000/api/places/user/${userId}`
+        );
+
+        setLoadedPlaces(responseData.places);
+      } catch (error) {}
+    };
+    fetchPlaces();
+  }, [sendRequest, userId]);
+
+  return (
+    <React.Fragment>
+      <ErrorModal error={error} onClear={clearError} />
+      {isLoading && (
+        <div className="center">
+          <LoadingSpinner />
+        </div>
+      )}
+      {!isLoading && loadedPlaces && <PlaceList items={loadedPlaces} />}
+    </React.Fragment>
+  );
 };
 
 export default UserPlaces;
